@@ -10,6 +10,9 @@ namespace KontaktVerwaltung.UI
     /// </summary>
     public partial class App : Application
     {
+        //ToDo: Fody Configuration:
+        // https://github.com/Fody/Home/blob/master/pages/usage.md
+        // https://github.com/Fody/Home/blob/master/pages/configuration.md
         public App()
         {
             

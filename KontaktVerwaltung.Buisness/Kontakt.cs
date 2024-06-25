@@ -13,5 +13,6 @@ namespace KontaktVerwaltung.Buisness
         public string? Telefonnummer { get; set;}
         public string? Adresse { get; set; }
         public BeziehungsArt? BeziehungsArt { get; set; }
+
     }
 }

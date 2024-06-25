@@ -8,83 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using KontaktVerwaltung.ViewModels.Store;
 
 
 namespace KontaktVerwaltung.ViewModels
 {
     public class KontaktBuchAnzeigeViewModel : ViewModelBase
     {
-        public string Filter { get; set; } = string.Empty;
+        public string Filter { get; set; }
+        private readonly KontaktBuchStore store;
         private readonly ObservableCollection<Kontakt> kontakte;
         public IEnumerable<Kontakt> Kontakte => kontakte;
 
         public KontaktBuchAnzeigeViewModel()
         {
+            this.store = new KontaktBuchStore(new KontaktBuch());
+            Filter = string.Empty;
             kontakte = new ObservableCollection<Kontakt>();
-            kontakte.Add(new Kontakt()
+            foreach(var kontakt in store.Kontakte)
             {
-                Vorname = "Max",
-                Nachname = "Mustermann",
-                Adresse = "Musterstraße 5",
-                Telefonnummer = "54654881",
-                BeziehungsArt = BeziehungsArt.Familie,
-            });
-
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Martha",
-                Nachname = "Mustermann",
-                Adresse = "Musterstraße 5",
-                Telefonnummer = "54654881",
-                BeziehungsArt = BeziehungsArt.Familie,
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Billard",
-                Nachname = "Bob",
-                Adresse = "Bobstraße 12",
-                Telefonnummer = "418515687",
-                BeziehungsArt = BeziehungsArt.Privat,
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Anna",
-                Nachname = "Author",
-                Adresse = "Freideich 12",
-                Telefonnummer = "84691515687",
-                BeziehungsArt = BeziehungsArt.Geschäftlich,
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Charm",
-                Nachname = "Cheussur",
-                Adresse = "Reichenburg 12",
-                Telefonnummer = "84188",
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Hinze",
-                Nachname = "Ketchup",
-                Adresse = "Heinrichstr. 9999",
-                Telefonnummer = "85475312188",
-                BeziehungsArt = BeziehungsArt.Privat,
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Nur",
-                Nachname = "Nummer",
-                Adresse = "",
-                Telefonnummer = "854846531188",
-                BeziehungsArt = BeziehungsArt.Geschäftlich,
-            });
-            kontakte.Add(new Kontakt()
-            {
-                Vorname = "Nur",
-                Nachname = "Name",
-                Adresse = "",
-                Telefonnummer = "",
-                BeziehungsArt = BeziehungsArt.Geschäftlich,
-            });
+                kontakte.Add(kontakt);
+            }
         }
     }
 }
